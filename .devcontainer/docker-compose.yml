@@ -1,53 +1,53 @@
 version: "3.5"
 
 services:
-  hsi-pyapp:
+  pyapp:
     image: mcr.microsoft.com/devcontainers/python:0-3.11-bullseye
     volumes:
-        - ..:/workspaces/HSI_Future_RL:cached     # .. => upper level dir, it is dev-con-study dir. 
+        - ..:/workspaces/DevContainer_Py_Mongodb_MongoExpress:cached     # .. => upper level dir, it is dev-con-study dir. 
     # network_mode: service:MONGO
     networks:
-      - HSIMONGO
+      - MONGONET
     command: sleep infinity
 
-  hsi-mongo:
+  mongobase:
     image: mongo:latest
-    container_name: hsi-mongo
+    container_name: mongobase
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
     ports:
       - "0.0.0.0:27017:27017"
     networks:
-      - HSIMONGO
+      - MONGONET
     volumes:
       - type: volume
-        source: HSI_MONGO_DATA
+        source: MONGO_DATA_BASE
         target: /data/db
       - type: volume
-        source: HSI_MONGO_CONFIG
+        source: MONGO_CONFIG_BASE
         target: /data/configdb
-  hsi-mongo-express:
+  mongo-expressbase:
     image: mongo-express:latest
-    container_name: hsi-mongo-express
+    container_name: mongo-expressbase
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: admin
-      ME_CONFIG_MONGODB_SERVER: hsimongo
+      ME_CONFIG_MONGODB_SERVER: mongobase
       ME_CONFIG_MONGODB_PORT: "27017"
     ports:
       - "0.0.0.0:8081:8081"
     networks:
-      - HSIMONGO
+      - MONGONET
     depends_on:
-      - hsi-mongo
+      - mongobase
 
 networks:
-  HSIMONGO:
-    name: HSIMONGO
+  MONGONET:
+    name: MONGONET
 
 volumes:
-  HSI_MONGO_DATA:
-    name: HSI_MONGO_DATA
-  HSI_MONGO_CONFIG:
-    name: HSI_MONGO_CONFIG
+  MONGO_DATA_BASE:
+    name: MONGO_DATA_BASE
+  MONGO_CONFIG_BASE:
+    name: MONGO_CONFIG_BASE

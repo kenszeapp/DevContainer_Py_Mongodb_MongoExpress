@@ -1,11 +1,11 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "Python3_HSI_Future_RL",
+	"name": "Python3_Base",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile  
 	// mcr.microsoft.com/devcontainers/python:0-3.11-bullseye
 	"dockerComposeFile": "docker-compose.yml",
-    "service": "hsi-pyapp",
+    "service": "pyapp",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
 		"vscode": {
@@ -22,9 +22,9 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --user -r requirements.txt"
+	"postCreateCommand": "pip install --upgrade pip && pip3 install -r requirements.txt",
 	// Configure tool-specific properties.
 	// "customizations": {},
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"remoteUser": "root"
 }
