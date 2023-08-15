@@ -1,6 +1,7 @@
 # This is a development environemt for Python + mongodb inside a devcontainer. The python version 3.11. 
 
-## Open this folder with VS Code, 【Ctrl】 + 【Shift】 + P then select Open Folder in Container. 
+## Get Started
+Open this folder with VS Code, 【Ctrl】 + 【Shift】 + P then select Open Folder in Container. 
 
 ## Run jupyter notebook test.ipynb.  
 - VS Code prompts install ipykernel package, click Yes.
