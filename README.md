@@ -1,4 +1,4 @@
-# This is a development environemt for Python + mongodb inside a devcontainer. The python version 3.11. 
+# Python + mongodb devcontainer. The Python version 3.11. 
 
 ## Get Started
 Open this folder with VS Code, 【Ctrl】 + 【Shift】 + P then select Open Folder in Container. 
